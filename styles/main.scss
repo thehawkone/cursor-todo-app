@@ -1,0 +1,89 @@
+$color-bg-dark: #0f172a;
+$color-bg-mid: #1e293b;
+$color-accent: #6366f1;
+$color-accent-light: #818cf8;
+$color-text: #f1f5f9;
+$color-text-muted: #94a3b8;
+$color-surface: rgba(255, 255, 255, 0.06);
+$color-border: rgba(255, 255, 255, 0.12);
+$radius-lg: 1.25rem;
+$radius-md: 0.75rem;
+$radius-sm: 0.5rem;
+$shadow-card: 0 20px 60px rgba(0, 0, 0, 0.35);
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: $color-text;
+    background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99, 102, 241, 0.35), transparent),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(129, 140, 248, 0.2), transparent),
+    linear-gradient(160deg, $color-bg-dark 0%, $color-bg-mid 50%, #0c1222 100%);
+}
+
+.todo-app {
+    border: 1px solid $color-border;
+    background: $color-surface;
+    backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 32rem;
+    padding: 1.5rem;
+    border-radius: $radius-lg;
+}
+
+.todo-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    &__input {
+        flex: 1 1 12 rem;
+        min-width: 0;
+        padding: 0.75rem;
+        border-radius: $radius-md;
+        border: 1px solid $color-border;
+        background-color: $color-surface;
+        color: $color-text;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        outline: none;
+    }
+    &__button {
+        padding: 0.75rem 1.25rem;
+        border-radius: $radius-md;
+        outline: none;
+        background-color: $color-text;
+        color: $color-bg-dark;
+        font-weight: 500;
+        line-height: 1.5;
+        border: 1px solid $color-border;
+        cursor: pointer;
+    }
+}
+
+.todo-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $color-text-muted;
+    margin-top: 0.5rem;
+}
