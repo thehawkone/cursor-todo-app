@@ -108,7 +108,7 @@ body {
   background-color: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(16px);
 }
-.todo-list__item--done {
+.todo-list__item--done span {
   text-decoration: line-through;
   color: #94a3b8;
 }/*# sourceMappingURL=main.css.map */

@@ -131,7 +131,9 @@ body {
     }
     
     &__item--done {
-        text-decoration: line-through;
-        color: $color-text-muted;
+        span {
+            text-decoration: line-through;
+            color: $color-text-muted;
+        }
     }
 }
