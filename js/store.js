@@ -1,7 +1,15 @@
+import { loadTasks, saveTasks } from './model.js';
+
 let tasks = [];
+
+function initStore() {
+    tasks = loadTasks();
+    return tasks;
+}
 
 function addTask(text) {
     tasks.push({ id: crypto.randomUUID().slice(0, 8), text, done: false });
+    saveTasks(tasks)
     return tasks;
 }
 
@@ -18,15 +26,17 @@ function toggleTask(id) {
         console.error("Задача не найдена");
         return null;
     }
+    saveTasks(tasks)
     return tasks[taskId];
 }
 
 function deleteTask(id) {
     tasks = tasks.filter(task => task.id !== id);
+    saveTasks(tasks)
     return tasks;
 }
 
 function editTask(id) {
 }
 
-export { addTask, getTasks, toggleTask, deleteTask, editTask };
+export { initStore, addTask, getTasks, toggleTask, deleteTask, editTask };
