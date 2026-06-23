@@ -6,7 +6,10 @@ const todoList = document.getElementById('todo-list');
 const todoStats = document.getElementById('todo-stats');
 
 function updateStats() {
-    todoStats.textContent = `Текущие задачи: ${todoList.children.length}`;
+    const remainingTasks  = getTasks().filter(task => !task.done);
+    todoStats.textContent = 
+    `Текущие задачи: ${todoList.children.length}
+    Осталось задач: ${remainingTasks.length}`;
 }
 
 
@@ -35,6 +38,25 @@ function renderTasks() {
         todoItem.appendChild(button);
 
         span.textContent = task.text;
+
+        span.addEventListener('click', (event) => {
+            if (event.target.closest('button') || event.target.closest('input')) {
+                return;
+            }
+            const newText = prompt('Редактировать задачу', task.text);
+            if (newText === null) {
+                return;
+            }
+            else if (newText.trim() === '') {
+                alert('Введите текст задачи');
+                return;
+            }
+            else {
+                editTask(task.id, newText);
+                renderTasks();
+            }
+        })
+
         button.textContent = 'Удалить';
         button.type = 'button'
         button.classList.add('todo-list__delete');
@@ -61,5 +83,4 @@ function initUI() {
     });
     renderTasks();
 }
-
 export { initUI };

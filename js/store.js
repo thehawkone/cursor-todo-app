@@ -36,7 +36,18 @@ function deleteTask(id) {
     return tasks;
 }
 
-function editTask(id) {
+function editTask(id, text) {
+    const taskId = tasks.findIndex(task => task.id === id);
+    if (taskId !== -1 && text.trim() !== '') {
+        const trimmed = text.trim();
+        tasks[taskId].text = trimmed;
+    }
+    else {
+        console.error("Задача не найдена");
+        return null;
+    }
+    saveTasks(tasks)
+    return tasks[taskId];
 }
 
 export { initStore, addTask, getTasks, toggleTask, deleteTask, editTask };

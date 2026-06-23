@@ -79,6 +79,7 @@ body {
 }
 
 .todo-stats {
+    white-space: pre-line;
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
@@ -98,6 +99,13 @@ body {
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
+
+    span {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 
     &__item-input {
         width: 1rem;
@@ -136,4 +144,12 @@ body {
             color: $color-text-muted;
         }
     }
+}
+
+.info {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $color-text-muted;
+    margin-top: 1.5rem;
 }
