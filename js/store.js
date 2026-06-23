@@ -31,9 +31,15 @@ function toggleTask(id) {
 }
 
 function deleteTask(id) {
-    tasks = tasks.filter(task => task.id !== id);
-    saveTasks(tasks)
-    return tasks;
+    const userAgreed = confirm('Вы уверены, что хотите удалить задачу?');
+    if (userAgreed) {
+        tasks = tasks.filter(task => task.id !== id);
+        saveTasks(tasks)
+        return tasks;
+    }
+    else {
+        return null;
+    }
 }
 
 function editTask(id, text) {
@@ -50,4 +56,10 @@ function editTask(id, text) {
     return tasks[taskId];
 }
 
-export { initStore, addTask, getTasks, toggleTask, deleteTask, editTask };
+function clearCompleted() {
+    tasks = tasks.filter(task => !task.done);
+    saveTasks(tasks)
+    return tasks;
+}
+
+export { initStore, addTask, getTasks, toggleTask, deleteTask, editTask, clearCompleted };

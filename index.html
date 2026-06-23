@@ -21,10 +21,18 @@
       <button class="todo-form__button" type="submit">Добавить</button>
     </form>
 
-    <p class="todo-stats" id="todo-stats">0 текущих задач</p>
+    <p class="todo-stats" id="todo-stats"></p>
     <ul class="todo-list" id="todo-list">
-     <!-- сюда JS будет добавлять задачи -->
+      <!-- list zadach -->
     </ul>
+
+    <p class="todo-empty" id="todo-empty" hidden>
+      Пока задач нет. Добавьте первую!
+    </p>
+
+    <button type="button" class="todo-clear" id="clear-completed" hidden>
+      Очистить выполненные
+    </button>
 
     <div class="info">
       <p class="info__text">

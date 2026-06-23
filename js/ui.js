@@ -1,21 +1,38 @@
-import { addTask, deleteTask, toggleTask, getTasks, editTask } from './store.js';
+import { addTask, deleteTask, toggleTask, getTasks, editTask, clearCompleted } from './store.js';
 
 const todoForm = document.getElementById('todo-form');
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 const todoStats = document.getElementById('todo-stats');
+const clearCompletedBtn = document.getElementById('clear-completed');
+const todoEmpty = document.getElementById('todo-empty');
 
 function updateStats() {
     const remainingTasks  = getTasks().filter(task => !task.done);
     todoStats.textContent = 
-    `Текущие задачи: ${todoList.children.length}
+    `Текущие задачи: ${getTasks().length}
     Осталось задач: ${remainingTasks.length}`;
+}
+
+function updateClearButton() {
+    const hasCompleted = getTasks().some(task => task.done);
+    clearCompletedBtn.hidden = !hasCompleted;
 }
 
 
 function renderTasks() {
     todoList.innerHTML = '';
     const tasks = getTasks();
+
+    if (tasks.length === 0) {
+        todoStats.hidden = true;      // или убрать stats совсем
+        todoEmpty.hidden = false;     // ← показать пустое сообщение
+        updateClearButton();
+        return;
+    }
+    todoEmpty.hidden = true;          // спрятать «Пока задач нет»
+    todoStats.hidden = false; 
+
     for (const task of tasks) {
         const todoItem = document.createElement('li');
         const span = document.createElement('span');
@@ -67,6 +84,7 @@ function renderTasks() {
         todoList.appendChild(todoItem);
     }
     updateStats();
+    updateClearButton();
 }
 
 function initUI() {
@@ -81,6 +99,14 @@ function initUI() {
             todoInput.value = '';
         }
     });
+
+    clearCompletedBtn.addEventListener('click', (event) => {
+        if (confirm('Удалить все выполненные задачи?')) {
+            clearCompleted();
+            renderTasks();
+        }
+    });
+
     renderTasks();
 }
 export { initUI };
